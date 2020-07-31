@@ -46,13 +46,28 @@ var quotes = [
 /***
  * `getRandomQuote` function
 ***/
-
-
+const getRandomQuote = () => {
+    let randomNum = Math.floor(Math.random() * quotes.length);
+    return quotes[randomNum];
+}
 
 /***
  * `printQuote` function
 ***/
-
+const printQuote = () => {
+    randomQuote = getRandomQuote();
+    html = `<p class="quote">${randomQuote.quote}</p>`;
+    html += `<p class="source">${randomQuote.source}`;
+    if (randomQuote.citation) {
+        html += `<span class="citation">${randomQuote.citation}</span>`;
+    }
+    if (randomQuote.year) {
+        html += `<span class="year">${randomQuote.year}</span>`;
+    }
+    html += "</p>";
+    document.getElementById('quote-box').innerHTML = html;
+    return html;
+}
 
 
 /***
