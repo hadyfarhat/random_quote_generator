@@ -68,11 +68,8 @@ const getRandomQuote = () => {
  * Changes the background colour to a random one:
  */
 const randomChangeBackgroundColour = () => {
-    // array of colours
     let colours = ["#001f3f", "#0074D9", "#39CCCC", "#3D9970", "#2ECC40", "#FF851B", "#FF4136", "#85144b", "#111111"];
-    // generate random number
     let random = Math.floor(Math.random() * colours.length);
-    // change background colour
     document.body.style.backgroundColor = colours[random];
 }
 
@@ -108,6 +105,36 @@ const printQuote = () => {
     return html;
 }
 
+/**
+ * Print quote every 5 seconds and shows progress bar for that interval
+ */
+const updateQuoteAtRegularIntervals = () => {
+    printQuote();
+
+    // set background color of progress bar to body's background color
+    let backgroundColor = document.body.style.backgroundColor;
+    document.getElementById("bar").style.backgroundColor = backgroundColor;
+
+    // Set interval and update progress bar
+    let i = 0;
+    if (i == 0) {
+        i = 1;
+        var elem = document.getElementById("bar");
+        var width = 1;
+        var id = setInterval(frame, 100);
+        function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+                updateQuoteAtRegularIntervals();
+            } else {
+                width++;
+                elem.style.width = width + "%";
+            }
+        }
+    }
+}
+
 
 /***
  * click event listener for the print quote button
@@ -115,3 +142,6 @@ const printQuote = () => {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+
+updateQuoteAtRegularIntervals();

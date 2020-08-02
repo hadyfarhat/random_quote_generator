@@ -26,6 +26,17 @@ h1 {
   text-shadow: 1px 1px 1px rgba(50, 50, 50, 0.3);
 }
 
+#progress-bar {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#bar {
+  width: 1%;
+  height: 30px;
+  background-color: #4CAF50;
+}
+
 .load-quote {
   color: #fff;
   text-shadow: 1px 1px 1px rgba(50, 50, 50, 0.3);
