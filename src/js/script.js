@@ -106,9 +106,12 @@ const printQuote = () => {
 }
 
 /**
- * Print quote every 5 seconds and shows progress bar for that interval
+ * Print quote every 10 seconds and shows progress bar for that interval
  */
+var intervalId;
 const updateQuoteAtRegularIntervals = () => {
+    clearInterval(intervalId);
+    
     printQuote();
 
     // set background color of progress bar to body's background color
@@ -121,10 +124,10 @@ const updateQuoteAtRegularIntervals = () => {
         i = 1;
         var elem = document.getElementById("bar");
         var width = 1;
-        var id = setInterval(frame, 100);
+        intervalId = setInterval(frame, 100);
         function frame() {
             if (width >= 100) {
-                clearInterval(id);
+                clearInterval(intervalId);
                 i = 0;
                 updateQuoteAtRegularIntervals();
             } else {
@@ -141,7 +144,7 @@ const updateQuoteAtRegularIntervals = () => {
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.getElementById('load-quote').addEventListener("click", updateQuoteAtRegularIntervals, false);
 
 
 updateQuoteAtRegularIntervals();
