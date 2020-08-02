@@ -51,6 +51,7 @@ var quotes = [
     }
 ]
 
+
 /**
  * Calculates a random number and uses it as an index to retrieve a quote from
  * the quotes array.
@@ -62,9 +63,24 @@ const getRandomQuote = () => {
     return quotes[randomNum];
 }
 
+
+/**
+ * Changes the background colour to a random one:
+ */
+const randomChangeBackgroundColour = () => {
+    // array of colours
+    let colours = ["#001f3f", "#0074D9", "#39CCCC", "#3D9970", "#2ECC40", "#FF851B", "#FF4136", "#85144b", "#111111"];
+    // generate random number
+    let random = Math.floor(Math.random() * colours.length);
+    // change background colour
+    document.body.style.backgroundColor = colours[random];
+}
+
+
 /**
  * - Gets a random quote
  * - Builds up html using the quote's contents
+ * - Randomly changes background colour
  * - Displays quote on screen
  * 
  * @return {string} html structure of the quote
@@ -84,6 +100,8 @@ const printQuote = () => {
         html += `<span class="tag">${randomQuote.tag}</span>`;
     }
     html += "</p>";
+
+    randomChangeBackgroundColour();
 
     document.getElementById('quote-box').innerHTML = html;
 
